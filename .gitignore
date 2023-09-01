@@ -1,0 +1,36 @@
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+
+# Ignore environment-related files
+.env
+venv/
+*.log
+
+# Ignore database files (SQLite, PostgreSQL, etc.)
+*.sqlite3
+*.db
+
+# Ignore development and runtime files
+*.pyo
+*.pyd
+*.db.sqlite3-journal
+*.swp
+*.swo
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore Node.js dependencies (if you're using JavaScript/Node.js)
+node_modules/
+
+# Ignore IDE and code editor-specific files
+.vscode/
+
+# Ignore Django migration files
+**/migrations/
+*.pyc
+
+# Ignore React build files (if you build React within your Django project)
+frontend/build/
+frontend/node_modules/
