@@ -1,3 +1,6 @@
+# C:/Users/talzu/OneDrive/Desktop/django23/django-rest/config/data/product_data.json
+# python manage.py import_products C:/Users/talzu/OneDrive/Desktop/django23/django-rest/config/data/product_data.json
+
 import json
 import re
 from decimal import Decimal
@@ -23,10 +26,14 @@ class Command(BaseCommand):
 
         for item in data:
             name = item.get("name")
+            price_str = item.get("price")
 
-            # Preprocess the price value to remove non-numeric characters and convert to Decimal
-            price_str = re.sub(r"[^\d.]", "", item.get("price"))
-            price = Decimal(price_str)
+            # Extract numeric characters and the decimal point from the price string
+            price_match = re.search(r"[\d.]+", price_str)
+            if price_match:
+                price = Decimal(price_match.group())
+            else:
+                price = Decimal("0.00")  # Set a default price if no valid price found
 
             image_url = item.get("image_url")
             image_path = item.get("image_path")
@@ -34,7 +41,7 @@ class Command(BaseCommand):
             product, created = Product.objects.get_or_create(
                 name=name,
                 price=price,
-                image=image_path,  # Provide the path to the image file
+                image=image_path,
             )
 
             if created:
