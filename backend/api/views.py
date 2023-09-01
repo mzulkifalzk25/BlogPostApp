@@ -1,12 +1,9 @@
 from django.shortcuts import render
 from rest_framework import generics
-from .models import Post
+from .models import Product
 from .serializers import PostSerializer
-
-# Create your views here.
 
 
 class PostList(generics.ListCreateAPIView):
-    queryset = Post.objects.all()
+    queryset = Product.objects.all()
     serializer_class = PostSerializer
-
